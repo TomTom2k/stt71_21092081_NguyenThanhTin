@@ -4,8 +4,81 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
 }
 
 html {
     font-size: 62.5%;
+}
+/* logo*/
+.logo {
+    padding: 1rem 2rem;
+
+    display: inline-block;
+
+    border-radius: 69% 31% 70% 30% / 43% 38% 62% 57%;
+
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-100);
+    letter-spacing: 0.1rem;
+
+    background-color: var(--third-color);
+
+    user-select: none;
+}
+
+.logo p {
+    line-height: 1.5rem;
+    text-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+.logo p span {
+    color: var(--secondary-color);
+    font-weight: 900;
+    font-size: 2.4rem;
+}
+
+/* all */
+main {
+    min-height: calc(100vh - 8rem);
+}
+
+button {
+    outline: none;
+
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2rem;
+
+    background-color: var(--primary-color);
+    color: var(--text-50);
+
+    transition: all 0.2s linear;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(0.9);
+
+    box-shadow: 0 0.5rem 2rem -0.5rem var(--primary-color);
+}
+
+
+
+
+
+
+/* responsive */
+@media (max-width: 1024px) and (min-width: 769px) {
+
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+
 }
