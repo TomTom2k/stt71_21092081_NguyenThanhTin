@@ -16,10 +16,12 @@ export let login = async (form, dataLogin, wellcomeText) => {
 
 	let data = await res.json();
 	if (res.status === 200) {
+		let paths = location.pathname.split('/');
+		let path = paths[paths.length - 1];
 		localStorage.setItem('token', JSON.stringify(data.refresh));
 		username = parseJwt(JSON.parse(localStorage.getItem('token'))).name;
 		alert(wellcomeText);
-		location.pathname = '/html/account.html';
+		location.pathname = location.pathname.replace(path, 'account.html');
 	} else {
 		form.querySelector('#error-message').innerHTML =
 			'Tài khoản hoặc mật khẩu không hợp lệ';
@@ -27,9 +29,11 @@ export let login = async (form, dataLogin, wellcomeText) => {
 };
 
 export let logout = () => {
+	let paths = location.pathname.split('/');
+	let path = paths[paths.length - 1];
 	localStorage.removeItem('token');
 	username = null;
-	location.pathname = '/html/login.html';
+	location.pathname = location.pathname.replace(path, 'login.html');
 };
 
 export let regis = async (form, dataRegis, welcomeText) => {
@@ -42,8 +46,10 @@ export let regis = async (form, dataRegis, welcomeText) => {
 	});
 
 	if (res.status === 200) {
+		let paths = location.pathname.split('/');
+		let path = paths[paths.length - 1];
 		alert(welcomeText);
-		location.pathname = '/html/login.html';
+		location.pathname = location.pathname.replace(path, 'login.html');
 	} else {
 		form.querySelector('#error-message').innerHTML =
 			'Tài khoản hoặc email đã tồn tại';
