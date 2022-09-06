@@ -1,9 +1,13 @@
+import { username } from './auth.js';
+
 window.showNavbar = () => {
 	let nav = document.querySelector('header nav');
 	nav.classList.toggle('active');
 };
 
 let header = document.querySelector('header');
+
+let hrefAcc = username ? './account.html' : './login.html';
 
 header.innerHTML = `
 <a href="./index.html" class="logo">
@@ -23,7 +27,7 @@ header.innerHTML = `
 <div class="icons">
     <div><i id="search" class="fas fa-search"></i></div>
     <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
-    <a href="./login.html"><i class="fas fa-user"></i></a>
+    <a href=${hrefAcc}><i class="fas fa-user"></i></a>
     <div><i id="bars" class="fas fa-bars" onclick="showNavbar()"></i></div>
 </div>
 `;
