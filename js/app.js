@@ -6,4 +6,4 @@ if (!username && (path === 'account.html' || path === 'cart.html')) {
 	location.pathname = location.pathname.replace(path, 'login.html');
 }
 
-console.log(path === 'account.html');
+console.log(path);
