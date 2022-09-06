@@ -9,6 +9,7 @@ form.onsubmit = (e) => {
 			form,
 			{
 				email: e.target.email.value,
+				phone_number: e.target.phoneNumber.value,
 				username: e.target.username.value,
 				password: e.target.password.value,
 			},
