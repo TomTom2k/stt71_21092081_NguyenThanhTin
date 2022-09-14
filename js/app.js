@@ -5,3 +5,7 @@ if (!username && (path === 'account.html' || path === 'cart.html')) {
 	console.log(path);
 	location.pathname = location.pathname.replace(path, 'login.html');
 }
+
+window.handlerProduct = (e) => {
+	sessionStorage.setItem('id', e.id);
+};

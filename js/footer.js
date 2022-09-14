@@ -1,3 +1,4 @@
+import url from './url.js';
 let footer = document.querySelector('footer');
 
 footer.innerHTML = `
@@ -16,7 +17,7 @@ footer.innerHTML = `
                     <li>Sản phẩm mới</li>
                 </ul>
             </a>
-            <a href="./category.html">
+            <a href="./category.html" id="category">
                 <h3>Danh sách</h3>
                 <ul class="items">
                     <li>Bánh cupcake</li>
@@ -60,4 +61,22 @@ footer.innerHTML = `
             <span>Địa chỉ: 123/4 Đỗ Nhuận, p.Linh Trung, tp.Thủ Đức</span>
         </div>
     </div>
-`;
+    `;
+
+let renderCategory = (data) => {
+	let category = footer.querySelector('#category .items');
+	let textCategory = data.map((tag, index) =>
+		index < 5 ? `<li>${tag.name}</li>` : ''
+	);
+	textCategory = textCategory.join('');
+	if (data.length > 5) textCategory = textCategory + '<li>...</li>';
+	category.innerHTML = textCategory;
+};
+
+let addTags = async () => {
+	let res = await fetch(url + '/product/category/');
+	let data = await res.json();
+	renderCategory(data);
+};
+
+addTags();
