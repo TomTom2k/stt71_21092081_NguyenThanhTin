@@ -22,7 +22,7 @@ let getEvent = async (callback) => {
 	let data = await res.json();
 	callback(data);
 };
-
+// navigate logic
 let navigate = (data) => {
 	let slider = event.querySelector('#slider');
 	let slide = 0;
@@ -52,12 +52,12 @@ let navigate = (data) => {
 getEvent(renderSlide);
 
 // get product
-
 let getProducts = async (callback) => {
 	let res = await fetch(url + '/product/cakes/');
 	let data = await res.json();
 	callback(data);
 };
+
 let renderNew = (data) => {
 	let newProducts = document.getElementById('newProducts');
 	let html = data.map((newP, index) => {

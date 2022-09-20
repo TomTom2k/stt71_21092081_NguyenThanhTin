@@ -1,3 +1,8 @@
+footer {
+    width: 100%;
+    z-index: 100000000000;
+    position: absolute;
+}
 footer .footer1 {
     padding: 2rem;
     padding: 2rem ;

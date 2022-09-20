@@ -22,8 +22,8 @@ main {
     overflow: auto;
 
     display: flex;
-    justify-content: center;
-    align-items: start;
+    justify-content: start;
+    align-items: center;
 
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }

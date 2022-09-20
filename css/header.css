@@ -15,7 +15,7 @@ header {
 
     background-color: var(--primary-color);
 
-    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 
@@ -99,6 +99,7 @@ header .icons i {
     cursor: pointer;
 
     transition: all 0.2s linear;
+    position: relative;
 }
 
 header .icons i:hover {
@@ -106,6 +107,25 @@ header .icons i:hover {
     color: var(--text-50);
 
     transform: rotate(360deg) scale(1.2);
+}
+
+#card-num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    font-size: 1rem;
+    color: var(--text-50);
+    text-align: center;
+    line-height: 1.5rem;
+    font-weight: 300;
+}
+
+header .icons i:hover #card-num {
+    display: none;
 }
 
 #bars {

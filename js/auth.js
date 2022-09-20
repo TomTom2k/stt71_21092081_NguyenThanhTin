@@ -4,6 +4,10 @@ export let username = localStorage.getItem('token')
 	? parseJwt(JSON.parse(localStorage.getItem('token'))).name
 	: null;
 
+export let cart = localStorage.getItem('cart')
+	? JSON.parse(localStorage.getItem('cart'))
+	: [];
+
 // hàm đăng nhập
 export let login = async (form, dataLogin, wellcomeText) => {
 	let res = await fetch(url + '/user/api/token/', {
