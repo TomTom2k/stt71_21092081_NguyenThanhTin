@@ -24,12 +24,12 @@ footer .footer1 .list-pages {
 
 footer .footer1 .list-pages a {
     color: var(--text-900);
-
+    font-size: 1.4rem;
     transition: all 0.2s linear;
 }
 
 footer .footer1 .list-pages a:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 footer .footer1 .list-pages a h3 {
     margin-bottom: 0.5rem;

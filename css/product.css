@@ -2,6 +2,7 @@ main {
     min-height: calc(100vh - 30rem);
 }
 .info-cake {
+    margin-top: 2rem;
     display: flex;
     justify-content: start;
     align-items: stretch;

@@ -8,7 +8,7 @@ window.showAside = () => {
 let initialState = [];
 
 let getData = async () => {
-	let res = await fetch(url + '/product/cakes/');
+	let res = await fetch(url + '/product/');
 	let data = await res.json();
 	return data;
 };
@@ -20,8 +20,10 @@ const cakesReducer = (state = initialState, action) => {
 				renderCakesList(state);
 				return state;
 			}
-			const newData = state.filter((cake) =>
-				cake.category.includes(parseInt(action.condition))
+			let newData = state.filter((cake) =>
+				cake.category.some(
+					(type) => parseInt(type.id) === parseInt(action.condition)
+				)
 			);
 			renderCakesList(newData);
 			return state;
@@ -48,7 +50,7 @@ const renderCakesList = async (cakesList) => {
 	}>
 		<img src=${url + cake.image} alt="">
 		<h5 class="name">${cake.name}</h5>
-		<p class="price">${cake.price}</p>
+		<p class="price">${Intl.NumberFormat().format(cake.price)} VND</p>
 	</a>
 	`
 	);

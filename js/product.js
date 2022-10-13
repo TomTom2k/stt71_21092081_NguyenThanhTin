@@ -12,7 +12,7 @@ let id = sessionStorage.getItem('id')
 	: 1;
 
 let getProduct = async (callback) => {
-	let res = await fetch(url + `/product/cakes/${id}`);
+	let res = await fetch(url + `/product/${id}/`);
 	let data = await res.json();
 	callback(data);
 };
@@ -67,7 +67,9 @@ let renderMain = async (data) => {
 	`
 			: `
 		<h2 id="price">
-			<p>240000</p>
+			<p class="new">${Intl.NumberFormat().format(
+				data.price - (data.price * data.sale) / 100
+			)}</p>
 		</h2>
 	`;
 	// add category
@@ -86,6 +88,9 @@ window.handlerBtnAdd = (e) => {
 	let section = e.parentElement.parentElement;
 	let item = {
 		cake: section.id,
+		name: section.querySelector('.name').innerHTML,
+		image: section.parentElement.querySelector('img').src,
+		price: section.querySelector('#price .new').innerHTML,
 		amount: section.querySelector('#amount').value,
 	};
 	if (cart.some((cake) => cake.cake === item.cake)) {
@@ -98,6 +103,5 @@ window.handlerBtnAdd = (e) => {
 		cart.push(item);
 		localStorage.setItem('cart', JSON.stringify(cart));
 	}
-	alert('Sản phẩm đã được thêm vào giỏ hàng');
-	location.reload();
+	document.getElementById('card-num').innerHTML = cart.length;
 };

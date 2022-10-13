@@ -1,6 +1,6 @@
 /* header*/
 header {
-    z-index: 100000000;
+    z-index: 1000000000000000000000;
     width: 100%;
     height: 8rem;
     padding: 1rem 2rem;
@@ -21,7 +21,7 @@ header {
 
 /* navbar */
 header nav {
-    width: 60%;
+    width: 70%;
 
     display: flex;
     justify-content: center;
@@ -41,7 +41,7 @@ header nav ul li {
 
     text-align: center;
     font-size: 1.6rem;
-    font-weight: 600;
+    font-weight: 450;
     letter-spacing: 0.1rem;
 
     transition: all 0.2s ease;
@@ -66,7 +66,7 @@ header nav ul li:hover::after {
 }
 
 header nav ul li a {
-    color: var(--text-700);
+    color: var(--text-900);
 }
 
 header nav ul li:hover a {
@@ -106,7 +106,72 @@ header .icons i:hover {
     background-color: var(--secondary-color);
     color: var(--text-50);
 
-    transform: rotate(360deg) scale(1.2);
+    transform:scale(1.1);
+}
+
+#search {
+    position: relative;
+}
+
+.pop-up {
+    position: absolute;
+    top: 7rem;
+    right: 17rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    width: 24rem;
+    min-height: 5rem;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.4rem;
+    font-weight: 400;
+
+    color: var(--text-900);
+    background: var(--text-100);
+    box-shadow: 4px 4px 1rem rgba(0, 0, 0, 0.2);
+}
+.pop-up::after {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: 1rem;
+    height: 1rem;
+    border-left: 0.8rem solid transparent;
+    border-right: 0.8rem solid transparent;
+    border-bottom: 1rem solid var(--text-100);
+}
+.pop-up.active {
+    display: flex;
+}
+.pop-up input {
+    outline: none;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.2rem 1rem;
+}
+.search-item {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+
+    overflow: hidden;
+
+    color: var(--text-900);
+    background-color: var(--text-50);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+.search-item:hover {
+    transform: scale(1.02);
+}
+.search-item img {
+    width: 6rem;
+    height: 5rem;
+    display: block;
 }
 
 #card-num {

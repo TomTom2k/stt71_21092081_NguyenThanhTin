@@ -18,7 +18,7 @@ let renderSlide = (data) => {
 
 // call api
 let getEvent = async (callback) => {
-	let res = await fetch(url + '/product/events/');
+	let res = await fetch(url + '/product/event/');
 	let data = await res.json();
 	callback(data);
 };
@@ -53,7 +53,7 @@ getEvent(renderSlide);
 
 // get product
 let getProducts = async (callback) => {
-	let res = await fetch(url + '/product/cakes/');
+	let res = await fetch(url + '/product/');
 	let data = await res.json();
 	callback(data);
 };
@@ -67,7 +67,7 @@ let renderNew = (data) => {
 				newP.id
 			}>
 				<img src=${url + newP.image} alt="">
-				<p>${newP.price}</p>
+				<p>${Intl.NumberFormat().format(newP.price)} VND</p>
 			</a>
 		`
 			: '';
@@ -85,7 +85,12 @@ let renderSale = async (data) => {
 			}>
 				<img src=${url + saleP.image} alt="">
 				<h5 class="name">${saleP.name}</h5>
-				<p class="price">${Intl.NumberFormat().format(saleP.price)}</p>
+				<p class="price">
+					<p class="old">${Intl.NumberFormat().format(saleP.price)} VND</p>
+					<p class="new">${Intl.NumberFormat().format(
+						saleP.price - (saleP.price * saleP.sale) / 100
+					)} VND</p>
+				</p>
 				<div class="tag">${saleP.sale}%</div>
 			</a>
 		`

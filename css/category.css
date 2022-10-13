@@ -18,8 +18,8 @@ aside {
     transition: all 0.2s linear;
 }
 aside .list-category li{
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     text-transform: capitalize;
     transition: 0.2s all linear;
     overflow: hidden;
