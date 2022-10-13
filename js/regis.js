@@ -4,7 +4,11 @@ let form = document.querySelector('form');
 
 form.onsubmit = (e) => {
 	e.preventDefault();
-	if (e.target.password.value === e.target.entryPassword.value)
+	if (e.target.password.value !== e.target.entryPassword.value) {
+		form.querySelector('#error-message').innerHTML =
+			'Mật khẩu không trùng khớp';
+		('Chào mừng bạn đến với JERRY CHERRY');
+	} else {
 		regis(
 			form,
 			{
@@ -13,10 +17,7 @@ form.onsubmit = (e) => {
 				username: e.target.username.value,
 				password: e.target.password.value,
 			},
-			'Chào mừng bạn đến với JERRY CHERRY'
+			'Đăng ký thành công'
 		);
-	else {
-		form.querySelector('#error-message').innerHTML =
-			'Mật khẩu không trùng khớp';
 	}
 };
