@@ -1,16 +1,23 @@
 import { username } from './auth.js';
-let orderDetail = JSON.parse(sessionStorage.getItem('cart'));
+import url from './url.js';
+let orderDetails = JSON.parse(sessionStorage.getItem('cart'));
 let form = document.querySelector('form');
 
 let data = {
 	user: username,
 	address: null,
-	orderDetails: orderDetail,
+	orderDetails: orderDetails.map((orderDetail) => ({
+		product: orderDetail.product.cake,
+		amount: orderDetail.amount,
+	})),
 };
-let total = data.orderDetails((initial, orderDetail, index) => {
-	return initial + orderDetail.product.price * orderDetail.amount;
+let total = orderDetails.reduce((initial, orderDetail, index) => {
+	return (
+		initial +
+		parseInt(orderDetail.product.price.replaceAll(',', '')) *
+			parseInt(orderDetail.amount)
+	);
 }, 0);
-console.log(total.orderDetails);
 
 if (form) {
 	form.innerHTML = '';
@@ -18,7 +25,9 @@ if (form) {
 		<h2>Chi tiết hóa đơn</h2>
 		<div class="input-group">
 			<label for="username">Tài khoản :</label>
-			<input type="text" placeholder="${data.user}" id="username" name="username" disabled>
+			<input type="text" placeholder="${
+				data.user
+			}" id="username" name="username" disabled>
 		</div>
 		<div class="input-group">
 			<label for="address">Địa chỉ :</label>
@@ -35,17 +44,17 @@ if (form) {
 		</div>
 		<div class="text-group">
 			<p>Tổng tiền : </p>
-			<span>30,000 VND</span>
+			<span>${Intl.NumberFormat().format(total)} VND</span>
 		</div>
 		<div class="text-group">
 			<p>Tiền ship : </p>
-			<span>30,000 VND</span>
+			<span>${Intl.NumberFormat().format(30000)} VND</span>
 		</div>
 
 		<hr>
 		<div class="text-group">
 			<p>Hóa đơn : </p>
-			<span>180,000 VND</span>
+			<span>${Intl.NumberFormat().format(total + 30000)} VND</span>
 		</div>
 		<div class="button-group">
 			<button>Xác nhận mua hàng</button>
@@ -53,8 +62,41 @@ if (form) {
 	`;
 }
 
-form.onsubmit = (e) => {
+let elementsOrderDetail = document.querySelector('.list-product');
+if (elementsOrderDetail) {
+	elementsOrderDetail.innerHTML = '';
+	let html = orderDetails.map(
+		(orderDetail) =>
+			`
+			<div class="product">
+				<img src=${orderDetail.product.image} alt="">
+				<div class="info">
+					<p class="amount">${orderDetail.amount}</p>
+					<p class="price">${orderDetail.product.price} vnd</p>
+				</div>
+			</div>
+		`
+	);
+	console.log(orderDetails);
+	elementsOrderDetail.innerHTML = html.join('');
+}
+
+form.onsubmit = async (e) => {
 	e.preventDefault();
 	data.address = form.querySelector('#address').value;
-	console.log(data);
+	let res = await fetch(url + `/user/${username}/order/`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	});
+	if (res.status == 200) {
+		alert('Mua hành thành công. Hãy tiếp tục mua hàng nhé !!!');
+		let paths = location.pathname.split('/');
+		let path = paths[paths.length - 1];
+		location.pathname = location.pathname.replace(path, 'index.html');
+	} else {
+		alert('Đơn hàng chưa được xác nhận. Vui lòng thử lại !!!');
+	}
 };
