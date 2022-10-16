@@ -59,8 +59,9 @@ buyBtn.onclick = () => {
 	let items = document.querySelectorAll('.product.choice');
 	let data = [];
 	items.forEach((item) => {
+		let i = cart.findIndex((n) => n.cake === item.id);
 		data.push({
-			product: item.id,
+			product: cart[i],
 			amount: item.querySelector('.amount span').innerHTML,
 		});
 	});

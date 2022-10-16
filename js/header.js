@@ -62,7 +62,6 @@ input.onchange = () => {
 	let searchP = products.filter((product) =>
 		product.name.toLowerCase().includes(input.value.toLowerCase())
 	);
-	console.log(searchP);
 	if (searchP.length === 0) {
 		html.innerHTML = 'Không tìm thấy';
 	} else {
