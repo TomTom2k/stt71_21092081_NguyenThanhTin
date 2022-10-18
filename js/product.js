@@ -105,3 +105,5 @@ window.handlerBtnAdd = (e) => {
 	}
 	document.getElementById('card-num').innerHTML = cart.length;
 };
+
+window.handlerBtnBuy = (e) => {};

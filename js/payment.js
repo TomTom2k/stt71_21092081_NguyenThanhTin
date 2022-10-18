@@ -77,10 +77,8 @@ if (elementsOrderDetail) {
 			</div>
 		`
 	);
-	console.log(orderDetails);
 	elementsOrderDetail.innerHTML = html.join('');
 }
-
 form.onsubmit = async (e) => {
 	e.preventDefault();
 	data.address = form.querySelector('#address').value;
@@ -95,6 +93,14 @@ form.onsubmit = async (e) => {
 		alert('Mua hành thành công. Hãy tiếp tục mua hàng nhé !!!');
 		let paths = location.pathname.split('/');
 		let path = paths[paths.length - 1];
+
+		orderDetails.forEach((orderDetail) => {
+			let id = orderDetail.product.cake;
+			let cartLocal = JSON.parse(localStorage.getItem('cart'));
+			cartLocal = cartLocal.filter((product) => product.cake !== id);
+			localStorage.setItem('cart', JSON.stringify(cartLocal));
+		});
+
 		location.pathname = location.pathname.replace(path, 'index.html');
 	} else {
 		alert('Đơn hàng chưa được xác nhận. Vui lòng thử lại !!!');
